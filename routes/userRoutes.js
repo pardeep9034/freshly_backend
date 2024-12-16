@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { userModel,managerModel } = require("../models/userModel");
-
+const dotenv = require("dotenv");
+dotenv.config();
 const jwt = require("jsonwebtoken");
+const environment = process.env.ENVIROMENT; // development
 
 // Get all users
 router.get("/", async (req, res) => {
@@ -64,7 +66,9 @@ router.post("/employee/login", async (req, res) => {
     });
 
     // Send the token in a secure HTTP-only cookie
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, { httpOnly: true, 
+      secure:environment === 'production' ? true : false || false, 
+      sameSite: 'none' });
     res.status(200).send({  message: "Login successful" ,user});
   } catch (error) {
     console.error("Error during login:", error);
@@ -130,7 +134,11 @@ router.post("/manager/login", async (req, res) => {
     });
 
     // Send the token in a secure HTTP-only cookie
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token,
+       { httpOnly: true ,
+        secure: environment === 'production' ? true : false || false,
+        sameSite: 'none'  
+       });
     res.status(200).send({ message: "Login successful" });
   } catch (error) {
     console.error("Error during login:", error);
