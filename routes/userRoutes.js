@@ -137,7 +137,8 @@ router.post("/manager/login", async (req, res) => {
     res.cookie("token", token,
        { httpOnly: true ,
         secure: environment === 'production' ? true : false || false,
-        sameSite: environment === 'production' ? 'none' : "lax" || "lax"  
+        sameSite: environment === 'production' ? 'none' : "lax" || "lax" ,
+        
        });
     res.status(200).send({ message: "Login successful" });
   } catch (error) {
