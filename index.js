@@ -14,7 +14,7 @@ const orderRoutes = require('./routes/orderRoutes');
 // Middleware
 app.use(
   cors({
-    origin: ['https://freshly-eight.vercel.app/','http://localhost:5173'],
+    origin: ['https://freshly-eight.vercel.app','http://localhost:5173'],
     credentials: true, // Allow cookies
   })
 );
