@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     const users = await userModel.find();
     res.send(users);
   } catch (error) {
-    console.error("Error getting users:", error);
+    // console.error("Error getting users:", error);
     res.status(500).send({ message: "Server error. Please try again later." });
   }
 });
@@ -34,7 +34,7 @@ router.post("/add", async (req, res) => {
 
     res.status(201).send({ message: "User added successfully", user });
   } catch (error) {
-    console.error("Error adding user:", error);
+    // console.error("Error adding user:", error);
     res.status(500).send({ message: "Server error. Please try again later." });
   }
 });
@@ -43,12 +43,12 @@ router.post("/add", async (req, res) => {
 // Employee Login
 router.post("/employee/login", async (req, res) => {
   const { phoneno, password } = req.body;
-  console.log("password", password);
+  // console.log("password", password);
 
   try {
     // Find the user by phone number
     const user = await userModel.findOne({ phoneno });
-    console.log("user", user);
+    // console.log("user", user);
 
     // If user doesn't exist
     if (!user) {
@@ -71,7 +71,7 @@ router.post("/employee/login", async (req, res) => {
       sameSite:environment === 'production' ? 'none' : "lax" || "lax"});
     res.status(200).send({  message: "Login successful" ,user});
   } catch (error) {
-    console.error("Error during login:", error);
+    // console.error("Error during login:", error);
     res.status(500).send({ message: "Server error. Please try again later." });
   }
 });
@@ -105,7 +105,7 @@ router.get('/authenticate', async (req, res) => {
       // Respond with the user or manager data
       res.send(user || manager);
   } catch (error) {
-      console.error('Error during authentication:', error);
+      // console.error('Error during authentication:', error);
       res.status(403).send({ message: 'Invalid token' }); // Invalid or expired token
   }
 });
@@ -142,7 +142,7 @@ router.post("/manager/login", async (req, res) => {
        });
     res.status(200).send({ message: "Login successful" });
   } catch (error) {
-    console.error("Error during login:", error);
+    // console.error("Error during login:", error);
     res.status(500).send({ message: "Server error. Please try again later." });
   }
 });

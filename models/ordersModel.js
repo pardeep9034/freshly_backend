@@ -97,14 +97,6 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-// Add virtuals or pre/post hooks if needed for advanced functionality
-// orderSchema.pre('save', function (next) {
-//   if (this.isModified('orderItems')) {
-//     // Example: Recalculate total price based on order items
-//     this.totalPrice = this.orderItems.reduce((total, item) => total + item.quantity * item.price, 0);
-//   }
-//   next();
-// });
 
 // Create and export the Order model
 const Order = mongoose.model('Order', orderSchema);
